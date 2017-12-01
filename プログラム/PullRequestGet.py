@@ -31,10 +31,12 @@ def GetDataList(User,Project):
 
 def PullRequestAll(User1, Project1):
     PullRequestList = GetDataList(User1,Project1)
-    PRdictionary = PullRequestList[0]
-    Max = PRdictionary[u"number"]
+    dictionary1 = PullRequestList[0]
+    Max = dictionary1[u"number"]
     number = Max - 1
     while (number >= 0):
-        list = PullRequestList[number]
-        print list[u"title"]
+        PRdictionary = PullRequestList[number]
+        print PRdictionary[u"id"]
+        print PRdictionary[u"title"]
+        print PRdictionary[u"body"]
         number = number - 1
