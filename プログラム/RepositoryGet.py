@@ -32,7 +32,13 @@ def GetDatadict(User,Project):
 def RepositoryData(User1, Project1):
     dictionary = GetDatadict(User1,Project1)
     # print dictionary.items()
+    print 'RepositoryID'
     print dictionary[u"id"]
-    print dictionary[u"description"]
+    if(isinstance(dictionary[u"description"], type(None))):
+        print 'RepositoryDescription'
+        print dictionary[u"description"]
+    else:
+        print 'RepositoryDescription'
+        print dictionary[u"description"].encode('utf-8')
     # PRurl = dictionary[u"pulls_url"]
     # print PRurl
