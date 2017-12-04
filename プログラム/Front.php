@@ -27,12 +27,12 @@ try {
 }
 
 $offset = PROJECTS_PER_PAGE * ($page - 1);
-$sql = "select * from projectlist limit ".$offset.",".PROJECTS_PER_PAGE;
-$projectlist = array();
+$sql = "select * from RepositoryList limit ".$offset.",".PROJECTS_PER_PAGE;
+$RepositoryList = array();
 foreach($dbh->query($sql) as $row){
-    array_push($projectlist, $row);
+    array_push($RepositoryList, $row);
 }
-$total = $dbh->query("select count(*) from projectlist")->fetchColumn();
+$total = $dbh->query("select count(*) from RepositoryList")->fetchColumn();
 $totalPages = ceil($total / PROJECTS_PER_PAGE);
 
 if($total != 0){
@@ -52,11 +52,11 @@ $to = ($offset + PROJECTS_PER_PAGE) < $total ? ($offset + PROJECTS_PER_PAGE) : $
 </head>
 <body>
     <h1>リポジトリ一覧</h1>
-    <input type="button" onclick="location.href='RepositorySet.php?RepoQuantity=<?php echo ($total+1) ?>'"value="リポジトリ登録">
+    <input type="button" onclick="location.href='URLGet.php'"value="リポジトリ登録">
     <p>全<?php echo $total; ?>件中、<?php echo $from; ?>件~<?php echo $to; ?>件を表示しています。</p>
     <ul>
-    <?php foreach ($projectlist as $projectlist) :?>
-    <li><a href="RepositoryIndex.php?ProjectID=<?php echo $projectlist['ProjectID']; ?>&page=1"><?php echo htmlspecialchars($projectlist['ProjectName'],ENT_QUOTES,'UTF-8'); ?></a></li>
+    <?php foreach ($RepositoryList as $RepositoryList) :?>
+    <li><a href="RepositoryIndex.php?ProjectID=<?php echo $RepositoryList['ProjectID']; ?>&page=1"><?php echo htmlspecialchars($RepositoryList['ProjectName'],ENT_QUOTES,'UTF-8'); ?></a></li>
     <p><?php echo htmlspecialchars($projectlist['概要'],ENT_QUOTES,'UTF-8'); ?></p>
     <?php endforeach; ?>
     </ul>

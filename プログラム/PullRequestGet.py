@@ -36,7 +36,11 @@ def PullRequestAll(User1, Project1):
     number = Max - 1
     while (number >= 0):
         PRdictionary = PullRequestList[number]
+        print 'PullRequestID'
         print PRdictionary[u"id"]
-        print PRdictionary[u"title"]
-        print PRdictionary[u"body"]
+        print 'PullRequestTitle'
+        print PRdictionary[u"title"].encode('utf-8')
+        print 'PullRequestBody'
+        print PRdictionary[u"body"].encode('utf-8')
+        print 'PullRequestEnd'
         number = number - 1
