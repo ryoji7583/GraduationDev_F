@@ -29,6 +29,7 @@ foreach($dbh->query($sql) as $row){
     <title><?php echo $PRData[0]['Title']; ?></title>
 </head>
 <body>
+    <input type="button" onclick="location.href='ChangePullRequest.php?ProjectID=<?php echo $_GET["ProjectID"] ?>&PRNo=<?php echo $_GET["PRNo"] ?>'"value="プルリクエストの内容変更">
     <h1><?php echo nl2br($PRData[0]['Title']); ?></h1><br>
     <h2>実行環境</h2>
     <p><?php echo nl2br($PRData[0]['実行環境']) ?></p><br>
