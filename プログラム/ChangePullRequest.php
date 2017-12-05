@@ -50,5 +50,6 @@
             <button type="submit" name="button">変更</button>
         </div>
     </form>
+    <input type="button" onclick="location.href='TokenSet.php?ProjectID=<?php echo $_GET["ProjectID"] ?>'"value="ユーザーの登録">
 </body>
 </html>
