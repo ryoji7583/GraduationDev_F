@@ -57,7 +57,7 @@ $to = ($offset + PROJECTS_PER_PAGE) < $total ? ($offset + PROJECTS_PER_PAGE) : $
     <ul>
     <?php foreach ($RepositoryList as $RepositoryList) :?>
     <li><a href="RepositoryIndex.php?ProjectID=<?php echo $RepositoryList['ProjectID']; ?>&page=1"><?php echo htmlspecialchars($RepositoryList['ProjectName'],ENT_QUOTES,'UTF-8'); ?></a></li>
-    <p><?php echo htmlspecialchars($projectlist['概要'],ENT_QUOTES,'UTF-8'); ?></p>
+    <p><?php echo htmlspecialchars($RepositoryList['概要'],ENT_QUOTES,'UTF-8'); ?></p>
     <?php endforeach; ?>
     </ul>
     <?php if($page > 1) : ?>
