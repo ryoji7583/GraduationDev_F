@@ -11,7 +11,7 @@ def openTrafficAPI (owner, repo, path):
 
 # 取ってくるデータ
 paths = [
-    'pulls?state=all',
+    'pulls?state=close',
 ]
 
 def GetDataList(User,Project):
