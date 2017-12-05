@@ -53,6 +53,7 @@ $to = ($offset + PROJECTS_PER_PAGE) < $total ? ($offset + PROJECTS_PER_PAGE) : $
 <body>
     <h1>リポジトリ一覧</h1>
     <input type="button" onclick="location.href='URLGet.php'"value="リポジトリ登録">
+    <input type="button" onclick="location.href='Update.php'"value="更新">
     <p>全<?php echo $total; ?>件中、<?php echo $from; ?>件~<?php echo $to; ?>件を表示しています。</p>
     <ul>
     <?php foreach ($RepositoryList as $RepositoryList) :?>

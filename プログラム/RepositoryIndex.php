@@ -56,7 +56,7 @@ $to = ($offset + PROJECTS_PER_PAGE) < $total ? ($offset + PROJECTS_PER_PAGE) : $
     <p>全<?php echo $total; ?>件中、<?php echo $from; ?>件~<?php echo $to; ?>件を表示しています。</p>
     <ul>
     <?php foreach ($PRData as $PRData) :?>
-    <li><a href="PullRequestIndex.php?ProjectID=<?php echo $_GET["ProjectID"] ?>&PRNo=<?php echo $PRData["PRID"]; ?>""><?php echo htmlspecialchars($PRData['Title'],ENT_QUOTES,'UTF-8'); ?></a></li><br>
+    <li><a href="PullRequestIndex.php?ProjectID=<?php echo $_GET["ProjectID"] ?>&PRNo=<?php echo $PRData["PRID"]; ?>"><?php echo htmlspecialchars($PRData['Title'],ENT_QUOTES,'UTF-8'); ?></a></li><br>
     <?php endforeach; ?>
     </ul>
     <?php if($page > 1) : ?>
@@ -72,6 +72,6 @@ $to = ($offset + PROJECTS_PER_PAGE) < $total ? ($offset + PROJECTS_PER_PAGE) : $
     <?php if($page < $totalPages) : ?>
     <a href="?page=<?php echo $page+1; ?>">次</a>
     <?php endif; ?>
-
+    <p><br /><a href="Front.php">一覧に戻る</a></p>
 </body>
 </html>
