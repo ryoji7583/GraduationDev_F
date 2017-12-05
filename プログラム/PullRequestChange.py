@@ -6,16 +6,34 @@ import urllib2
 import sys
 import requests
 import os, json, functools
+from GetPRNo import *
 
-Owner = 'ryoji7583'
-RepoName = 'RepoSampleData'
-title = '変更後のタイトル'
+# Owner = 'ryoji7583'
+# RepoName = 'RepoSampleData'
+# title = '変更タイトル'
+# state = 'close'
+# base = 'master'
+# body = '内容を変更した。'
+# User = 'ryoji7583'
+# token = 'bd307f80537f73e8338ccd585b1aaeafbec9b089'
+# PRNo = '156159374'
+# number = GetNumber(Owner,RepoName,PRNo)
+
+Owner = sys.argv[1]
+RepoName = sys.argv[2]
+title = unicode(sys.argv[3], 'cp932')
 state = 'close'
-base = 'master'
-body = '変更後のボディ部分'
-User = 'ryoji7583'
-token = 'ccda23d9762b026096db58e5ba459c8a8ebba745'
-number = '2'
+base = sys.argv[4]
+body = unicode(sys.argv[5], 'cp932')
+User = sys.argv[6]
+token = sys.argv[7]
+PRNo = sys.argv[8]
+number = GetNumber(Owner,RepoName,PRNo)
+
+base = base.encode('utf-8')
+title = title.encode('utf-8')
+body = body.encode('utf-8')
+
 payload = {
   "title": title,
   "body": body,
@@ -26,5 +44,4 @@ url='https://api.github.com/repos/%s/%s/pulls/%s' % (Owner, RepoName, number)
 # GitHub Traffic API
 # https://developer.github.com/v3/repos/traffic/
 response = requests.patch(url,auth=(User, token), json=payload)
-print response.json()
 
