@@ -52,7 +52,7 @@ $to = ($offset + PROJECTS_PER_PAGE) < $total ? ($offset + PROJECTS_PER_PAGE) : $
 </head>
 <body>
     <h1>プルリクエスト一覧</h1>
-    <input type="button" onclick="location.href='PullRequestSet.php?ProjectID=<?php echo $_GET["ProjectID"] ?>&PRQuantity=<?php echo ($total+1) ?>'"value="プルリクエスト登録">
+    <input type="button" onclick="location.href='PullRequestAction.php?ProjectID=<?php echo $_GET["ProjectID"] ?>'"value="プルリクエスト送信">
     <p>全<?php echo $total; ?>件中、<?php echo $from; ?>件~<?php echo $to; ?>件を表示しています。</p>
     <ul>
     <?php foreach ($PRData as $PRData) :?>
