@@ -22,20 +22,20 @@
     foreach($dbh->query($sql2) as $row){
         array_push($PRData, $row);
     }
-
+    $PullRequestID='';
+    $PullRequestTitle='';
+    $PullRequestBody='';
     $Environment = '';
     $Picture     = '';
     $Way         = '';
     $Reference   = '';
 
     for($j=0 ; $j < count($RepositoryList); $j++){
-        $PullRequestID='';
-        $PullRequestTitle='';
-        $PullRequestBody='';
         $RepositoryID='';
         $RepositoryDescription='';
         $User = $RepositoryList[$j]['User'];
         $RepoName = $RepositoryList[$j]['ProjectName'];
+        $outpara = [];
         $fullPath ='python GithubDataGet.py '.$User.' '.$RepoName;
         exec($fullPath, $outpara);
         $i=0;
@@ -53,8 +53,8 @@
             }
             $i++;
         }
-        if(strcmp($RepositoryList[$j]['Overview'], $RepositoryDescription) != 0){
-            $stmt = $dbh -> prepare("UPDATE RepositoryList SET Overview = :Overview WHERE ProjectID = :RepositoryID");
+        if(strcmp($RepositoryList[$j]['概要'], $RepositoryDescription) != 0){
+            $stmt = $dbh -> prepare("UPDATE RepositoryList SET 概要 = :Overview WHERE ProjectID = :RepositoryID");
             $stmt->bindParam(':Overview', $RepositoryDescription, PDO::PARAM_STR);
             $stmt->bindParam(':RepositoryID', $RepositoryID, PDO::PARAM_STR);
             $stmt->execute();
@@ -101,6 +101,14 @@
             $stmt->bindParam(':Reference', $Reference, PDO::PARAM_STR);
             $stmt->bindParam(':PullRequestID', $PullRequestID, PDO::PARAM_STR);
             $stmt->execute();
+
+            $PullRequestID='';
+            $PullRequestTitle='';
+            $PullRequestBody='';
+            $Environment = '';
+            $Picture     = '';
+            $Way         = '';
+            $Reference   = '';
         }
     }
 ?>
