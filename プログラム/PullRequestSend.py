@@ -19,10 +19,29 @@ body = unicode(argvs[6], 'cp932')
 User = sys.argv[7]
 token = sys.argv[8]
 
+Owner = Owner[1:]
+Owner = Owner[:-1]
+RepoName = RepoName[1:]
+RepoName = RepoName[:-1]
+title = title[1:]
+title = title[:-1]
+head = head[1:]
+head = head[:-1]
+base = base[1:]
+base = base[:-1]
+body = body[1:]
+body = body[:-1]
+User = User[1:]
+User = User[:-1]
+token = token[1:]
+token = token[:-1]
+
 head = head.encode('utf-8')
 base = base.encode('utf-8')
 title = title.encode('utf-8')
 body = body.encode('utf-8')
+
+body = body.replace('\\n','\n')
 
 payload = {
           "title": title,

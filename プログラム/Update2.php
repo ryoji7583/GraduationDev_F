@@ -50,7 +50,7 @@
             while(strcmp($outpara[$i+1], 'PullRequestID') != 0){
                 $i++;
                 $RepositoryDescription .= $outpara[$i];
-                $RepositoryDescription .= "\n";
+                
             }
             $i++;
         }
@@ -88,7 +88,7 @@
             $end = '';
             $src=$PullRequestBody;
             if(mb_strpos($src,'【実行環境】') !== false){
-                $start = mb_strpos($src,'【実行環境】')+6;
+                $start = mb_strpos($src,'【実行環境】')+7;
                 $end = mb_strpos($src,'【このページでの内容】');
                 if($end){
                     $Environment = mb_substr($src, $start, $end-$start);
@@ -110,7 +110,7 @@
                 $end = '';
             }
             if(mb_strpos($src,'【このページでの内容】') !== false){
-                $start = mb_strpos($src,'【このページでの内容】')+11;
+                $start = mb_strpos($src,'【このページでの内容】')+12;
                 $end = mb_strpos($src,'【実装方法】');
                 if($end){
                     $Overview = mb_substr($src, $start, $end-$start);
@@ -127,7 +127,7 @@
                 $end = '';
             }
             if(mb_strpos($src,'【実装方法】') !== false){
-                $start = mb_strpos($src,'【実装方法】')+6;
+                $start = mb_strpos($src,'【実装方法】')+7;
                 $end = mb_strpos($src,'【参考ページ一覧】');
                 if($end){
                     $Way = mb_substr($src, $start, $end-$start);
@@ -139,7 +139,7 @@
                 $end = '';
             }
             if(mb_strpos($src,'【参考ページ一覧】') !== false){
-                $start = mb_strpos($src,'【参考ページ一覧】')+9;
+                $start = mb_strpos($src,'【参考ページ一覧】')+10;
                 $end = strlen($src);
                 $Reference = mb_substr($src, $start, $end-$start);
             }
