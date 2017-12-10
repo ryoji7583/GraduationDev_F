@@ -53,6 +53,7 @@
             while(strcmp($outpara[$i+1], 'PullRequestID') != 0){
                 $i++;
                 $RepositoryDescription .= $outpara[$i];
+                $RepositoryDescription .= "\n";
             }
             $i++;
         }
@@ -82,6 +83,7 @@
                 while(strcmp($outpara[$i+1], 'PullRequestEnd') != 0){
                     $i++;
                     $PullRequestBody .= $outpara[$i];
+                    $PullRequestBody .= "\n";
                 }
                 $i++;
             }

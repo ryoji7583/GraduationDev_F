@@ -50,6 +50,7 @@
             while(strcmp($outpara[$i+1], 'PullRequestID') != 0){
                 $i++;
                 $RepositoryDescription .= $outpara[$i];
+                $RepositoryDescription .= "\n";
             }
             $i++;
         }
@@ -78,15 +79,76 @@
                 while(strcmp($outpara[$i+1], 'PullRequestEnd') != 0){
                     $i++;
                     $PullRequestBody .= $outpara[$i];
+                    $PullRequestBody .= "\n";
                 }
                 $i++;
+            }
+            $Overview = $PullRequestBody;  
+            $start = '';
+            $end = '';
+            $src=$PullRequestBody;
+            if(mb_strpos($src,'【実行環境】') !== false){
+                $start = mb_strpos($src,'【実行環境】')+6;
+                $end = mb_strpos($src,'【このページでの内容】');
+                if($end){
+                    $Environment = mb_substr($src, $start, $end-$start);
+                }else{
+                    $end = mb_strpos($src,'【実装方法】');
+                    if($end){
+                        $Environment = mb_substr($src, $start, $end-$start);
+                    }else{
+                        $end = mb_strpos($src,'【参考ページ一覧】');
+                        if($end){
+                            $Environment = mb_substr($src, $start, $end-$start);   
+                        }else{
+                            $end = strlen($src);
+                            $Environment = mb_substr($src, $start, $end-$start);
+                        }
+                    }
+                }
+                $start = '';
+                $end = '';
+            }
+            if(mb_strpos($src,'【このページでの内容】') !== false){
+                $start = mb_strpos($src,'【このページでの内容】')+11;
+                $end = mb_strpos($src,'【実装方法】');
+                if($end){
+                    $Overview = mb_substr($src, $start, $end-$start);
+                }else{
+                    $end = mb_strpos($src,'【参考ページ一覧】');
+                    if($end){
+                        $Overview = mb_substr($src, $start, $end-$start);
+                    }else{
+                        $end = strlen($src);
+                        $Overview = mb_substr($src, $start, $end-$start);
+                    }
+                }
+                $start = '';
+                $end = '';
+            }
+            if(mb_strpos($src,'【実装方法】') !== false){
+                $start = mb_strpos($src,'【実装方法】')+6;
+                $end = mb_strpos($src,'【参考ページ一覧】');
+                if($end){
+                    $Way = mb_substr($src, $start, $end-$start);
+                }else{
+                    $end = strlen($src);
+                    $Way = mb_substr($src, $start, $end-$start);
+                }
+                $start = '';
+                $end = '';
+            }
+            if(mb_strpos($src,'【参考ページ一覧】') !== false){
+                $start = mb_strpos($src,'【参考ページ一覧】')+9;
+                $end = strlen($src);
+                $Reference = mb_substr($src, $start, $end-$start);
             }
             $stmt = $dbh -> prepare("INSERT INTO PRData VALUES (:RepositoryID, :PullRequestID, :Title, :Environment, :Overview, :Picture, :Way, :Reference)");
             $stmt->bindParam(':RepositoryID', $RepositoryID, PDO::PARAM_STR);
             $stmt->bindParam(':PullRequestID', $PullRequestID, PDO::PARAM_STR);
             $stmt->bindParam(':Title', $PullRequestTitle, PDO::PARAM_STR);
             $stmt->bindParam(':Environment', $Environment, PDO::PARAM_STR);
-            $stmt->bindParam(':Overview', $PullRequestBody, PDO::PARAM_STR);
+            $stmt->bindParam(':Overview', $Overview, PDO::PARAM_STR);
             $stmt->bindParam(':Picture', $Picture, PDO::PARAM_LOB);
             $stmt->bindParam(':Way', $Way, PDO::PARAM_STR);
             $stmt->bindParam(':Reference', $Reference, PDO::PARAM_STR);
@@ -95,7 +157,7 @@
             $stmt = $dbh -> prepare("UPDATE PRData SET Title = :Title, Enviroment = :Environment, Overview = :Overview, Picture = :Picture, Way = :Way, Reference = :Reference WHERE PullRequestID = :PullRequestID");
             $stmt->bindParam(':Title', $PullRequestTitle, PDO::PARAM_STR);
             $stmt->bindParam(':Environment', $Environment, PDO::PARAM_STR);
-            $stmt->bindParam(':Overview', $PullRequestBody, PDO::PARAM_STR);
+            $stmt->bindParam(':Overview', $Overview, PDO::PARAM_STR);
             $stmt->bindParam(':Picture', $Picture, PDO::PARAM_LOB);
             $stmt->bindParam(':Way', $Way, PDO::PARAM_STR);
             $stmt->bindParam(':Reference', $Reference, PDO::PARAM_STR);
@@ -109,6 +171,7 @@
             $Picture     = '';
             $Way         = '';
             $Reference   = '';
+            $Overview    = '';
         }
     }
 ?>
