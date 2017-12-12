@@ -33,15 +33,18 @@
 </head>
 <body>
     <?php
-    $Body = "【実行環境】";
+    $Body = "【実行環境】\n";
     $Body .= $_POST['Environment'];
-    $Body .= "【このページでの内容】";
+    $Body .= "\n";
+    $Body .= "【このページでの内容】\n";
     $Body .= $_POST['Overview'];
-    $Body .= "【実装方法】";
+    $Body .= "\n";
+    $Body .= "【実装方法】\n";
     $Body .= $_POST['Way'];
-    $Body .= "【参考ページ一覧】";
+    $Body .= "\n";
+    $Body .= "【参考ページ一覧】\n";
     $Body .= $_POST['Reference'];
-    $Body = str_replace("\n", "\r\n", $Body);
+    $Body = str_replace("\n", '\n', $Body);
     $head  = $_POST['User'];
     $head .= ':';
     $head .= $_POST['ChangeBranch'];
@@ -52,7 +55,7 @@
     $Body = mb_convert_encoding($Body,"cp932","UTF-8");
     $User = $_POST['User'];
     $Token = $UserToken[0]['Token'];
-    $fullPath = "Python PullRequestSend.py '".$Owner."' '".$RepoName."' '".$Title."' '".$hrad."' '".$Branch."' '".$Body."' '".$User."' '".$Token."' 2>&1";
+    $fullPath = "Python PullRequestSend.py '".$Owner."' '".$RepoName."' '".$Title."' '".$head."' '".$Branch."' '".$Body."' '".$User."' '".$Token."' 2>&1";
     exec($fullPath, $outpara);
     ?>
     <p>送信しました。<br /><a href="RepositoryIndex.php?ProjectID=<?php echo $RepositoryList[0]['ProjectID'] ?>">戻る</a></p>

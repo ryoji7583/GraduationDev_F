@@ -50,7 +50,7 @@ payload = {
           "base": base
        }
 
-url='https://api.github.com/repos/%s/%s/pulls' % (Owner, RepoName)
+url='https://api.github.com/repos/%s/%s/pulls?access_token=%s' % (Owner, RepoName,token)
 # GitHub Traffic API
 # https://developer.github.com/v3/repos/traffic/
-response = requests.post(url,auth=(User, token), json=payload)
+response = requests.post(url, json=payload)

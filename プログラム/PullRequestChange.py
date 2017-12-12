@@ -58,8 +58,8 @@ payload = {
   "state": state,
   "base": base
 }
-url='https://api.github.com/repos/%s/%s/pulls/%s' % (Owner, RepoName, number)
+url='https://api.github.com/repos/%s/%s/pulls/%s?access_token=%s' % (Owner, RepoName, number,token)
 # GitHub Traffic API
 # https://developer.github.com/v3/repos/traffic/
-response = requests.patch(url,auth=(User, token), json=payload)
+response = requests.patch(url, json=payload)
 
