@@ -73,8 +73,20 @@
             <textarea name="Title" id="Title"></textarea>
         </div>
         <div>
-            <label for="Body">内容:</label>
-            <textarea name="Body" id="Body"></textarea>
+            <label for="Environment">実行環境:</label>
+            <textarea name="Environment" id="Environment"></textarea>
+        </div>
+        <div>
+            <label for="Overview">概要:</label>
+            <textarea name="Overview" id="Overview"></textarea>
+        </div>
+        <div>
+            <label for="Way">実装方法:</label>
+            <textarea name="Way" id="Way"></textarea>
+        </div>
+        <div>
+            <label for="Reference">参考ページ:</label>
+            <textarea name="Reference" id="Reference"></textarea>
         </div>
         <div class="button">
             <button type="submit" name="button">登録</button>
