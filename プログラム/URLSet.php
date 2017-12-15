@@ -94,7 +94,7 @@
         $end = '';
         $src=$PullRequestBody;
         if(mb_strpos($src,'【実行環境】') !== false){
-            $start = mb_strpos($src,'【実行環境】')+7;
+            $start = mb_strpos($src,'【実行環境】')+6;
             $end = mb_strpos($src,'【このページでの内容】');
             if($end){
                 $Environment = mb_substr($src, $start, $end-$start);
@@ -116,7 +116,7 @@
             $end = '';
         }
         if(mb_strpos($src,'【このページでの内容】') !== false){
-            $start = mb_strpos($src,'【このページでの内容】')+12;
+            $start = mb_strpos($src,'【このページでの内容】')+11;
             $end = mb_strpos($src,'【実装方法】');
             if($end){
                 $Overview = mb_substr($src, $start, $end-$start);
@@ -133,7 +133,7 @@
             $end = '';
         }
         if(mb_strpos($src,'【実装方法】') !== false){
-            $start = mb_strpos($src,'【実装方法】')+7;
+            $start = mb_strpos($src,'【実装方法】')+6;
             $end = mb_strpos($src,'【参考ページ一覧】');
             if($end){
                 $Way = mb_substr($src, $start, $end-$start);
@@ -145,7 +145,7 @@
             $end = '';
         }
         if(mb_strpos($src,'【参考ページ一覧】') !== false){
-            $start = mb_strpos($src,'【参考ページ一覧】')+10;
+            $start = mb_strpos($src,'【参考ページ一覧】')+9;
             $end = strlen($src);
             $Reference = mb_substr($src, $start, $end-$start);
         }

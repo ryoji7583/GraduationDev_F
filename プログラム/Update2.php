@@ -88,7 +88,7 @@
             $end = '';
             $src=$PullRequestBody;
             if(mb_strpos($src,'【実行環境】') !== false){
-                $start = mb_strpos($src,'【実行環境】')+7;
+                $start = mb_strpos($src,'【実行環境】')+6;
                 $end = mb_strpos($src,'【このページでの内容】');
                 if($end){
                     $Environment = mb_substr($src, $start, $end-$start);
@@ -110,7 +110,7 @@
                 $end = '';
             }
             if(mb_strpos($src,'【このページでの内容】') !== false){
-                $start = mb_strpos($src,'【このページでの内容】')+12;
+                $start = mb_strpos($src,'【このページでの内容】')+11;
                 $end = mb_strpos($src,'【実装方法】');
                 if($end){
                     $Overview = mb_substr($src, $start, $end-$start);
@@ -127,7 +127,7 @@
                 $end = '';
             }
             if(mb_strpos($src,'【実装方法】') !== false){
-                $start = mb_strpos($src,'【実装方法】')+7;
+                $start = mb_strpos($src,'【実装方法】')+6;
                 $end = mb_strpos($src,'【参考ページ一覧】');
                 if($end){
                     $Way = mb_substr($src, $start, $end-$start);
@@ -139,7 +139,7 @@
                 $end = '';
             }
             if(mb_strpos($src,'【参考ページ一覧】') !== false){
-                $start = mb_strpos($src,'【参考ページ一覧】')+10;
+                $start = mb_strpos($src,'【参考ページ一覧】')+9;
                 $end = strlen($src);
                 $Reference = mb_substr($src, $start, $end-$start);
             }
@@ -154,11 +154,10 @@
             $stmt->bindParam(':Reference', $Reference, PDO::PARAM_STR);
             $stmt->execute();
 
-            $stmt = $dbh -> prepare("UPDATE PRData SET Title = :Title, Enviroment = :Environment, Overview = :Overview, Picture = :Picture, Way = :Way, Reference = :Reference WHERE PullRequestID = :PullRequestID");
+            $stmt = $dbh -> prepare("UPDATE PRData SET Title = :Title, 実行環境 = :Environment, ページ内容 = :Overview, 実装方法 = :Way, 参考ページ = :Reference WHERE PRID = :PullRequestID");
             $stmt->bindParam(':Title', $PullRequestTitle, PDO::PARAM_STR);
             $stmt->bindParam(':Environment', $Environment, PDO::PARAM_STR);
             $stmt->bindParam(':Overview', $Overview, PDO::PARAM_STR);
-            $stmt->bindParam(':Picture', $Picture, PDO::PARAM_LOB);
             $stmt->bindParam(':Way', $Way, PDO::PARAM_STR);
             $stmt->bindParam(':Reference', $Reference, PDO::PARAM_STR);
             $stmt->bindParam(':PullRequestID', $PullRequestID, PDO::PARAM_STR);

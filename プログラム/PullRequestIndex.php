@@ -36,8 +36,21 @@ foreach($dbh->query($sql) as $row){
     <h2>このページでの内容</h2>
     <p><?php echo nl2br($PRData[0]['ページ内容']); ?></p>
     <h2>結果画面</h2>
+    <?php 
+    if(empty($PRData[0]['実行画面'])){
+        ?><p>画像を登録することが出来ます。</p><br>
+        <FORM method="POST" enctype="multipart/form-data" action="PictureSet.php?ProjectID=<?php echo $_GET['ProjectID'] ?>&PRNo=<?php echo $_GET["PRNo"] ?>">
+        画像パス：<INPUT type="file" name="upfile" size="30" accept="image/*"><BR>
+        <INPUT type="submit" name="submit" value="登録">
+        </FORM>
+        <?php
+    }else{
+    ?>
     <img src="PictureShow.php?ProjectID=<?php echo $_GET['ProjectID']; ?>&PRNo=<?php echo $_GET['PRNo'] ?>" alt=""/>
     <br>
+    <?php 
+    }
+    ?>
     <h2>実装方法</h2>
     <?php echo nl2br($PRData[0]['実装方法']); ?>
     <h2>参考ページ一覧</h2>
