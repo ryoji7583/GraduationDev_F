@@ -54,7 +54,17 @@ foreach($dbh->query($sql) as $row){
     <h2>実装方法</h2>
     <?php echo nl2br($PRData[0]['実装方法']); ?>
     <h2>参考ページ一覧</h2>
-    <p><a href="<?php echo nl2br($PRData[0]['参考ページ']); ?>"><?php echo nl2br($PRData[0]['参考ページ']); ?></a></p>
+    <?php
+    $array = explode("\n", $PRData[0]['参考ページ']);
+    $array = array_map('trim', $array);
+    $array = array_filter($array, 'strlen');
+    $array = array_values($array);
+    for($a=0;$a<count($array);$a++){
+    ?>
+    <p><a href="<?php echo nl2br($array[$a]); ?>"><?php echo nl2br($array[$a]); ?></a></p>
+    <?php 
+    }
+    ?>
     <p><br /><a href="RepositoryIndex.php?ProjectID=<?php echo $_GET['ProjectID'] ?>">一覧に戻る</a></p>
 </body>
 </html>
